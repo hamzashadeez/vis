@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/tailwind.js"></script>
+    <title>File</title>
+</head>
+<body class=" relative bg-blue-200 bg-[url('../img/bg.jpg')] bg-center bg-no-repeat bg-cover bg-black h-screen flex flex-col items-center">
+    <div class="w-full h-screen bg-black opacity-80 absolute top-0 left-0"></div>
+    <div class="bg-white w-full py-3 shadow-sm text-center font-semibold text-blue-900 z-10">Admin Account</div>
+    <div class="flex items-center justify-center p-3 z-10 flex-1 w-full flex-col">
+        <div class="text-lg text-white font-semibold mb-3 w-full md:w-2/5">
+            <h1>Check Vehicle Number</h1></div>
+        <div class="rounded-md shadow-sm p-3 bg-white w-full md:w-2/5">
+            <form id="form" class=" flex items-center">
+                <p>
+                    <img alt="img" src="../img/icons8-search-50.png" class="w-6 h-6 ">
+                </p>
+                <input required id="input" style="border:none; outline: none;" placeholder="search by plate number" class="py-1 px-3 flex-1">
+                <button class="text-sm px-3 bg-green-700 py-2 rounded text-white">Check</button>
+            </form>
+            <div id="success" style="display: none;" class="my-2 bg-gray-100 rounded shadow-sm p-3 flex items-center">
+                <div  id="result" class="flex-1">
+                    <h4 id="" class="font-semibold text-xs text-green-800 mb-3">SUCCESS!</h4>
+                    <h4 id="result_header" class="font-semibold">AE134-JJJ</h4>
+                    <p id="state" class="text-gray-500">Katsina State</p>
+                    <p id="year" class="text-gray-500">2022</p>
+                </div>
+                <p class="text-gray-300">></p>
+            </div>
+            <!-- error -->
+            <div id="error" style="display: none;" class="my-2 bg-orange-100 rounded shadow-sm p-3 text-orange-900 text-center">Error</div>
+        </div>
+
+        <!-- buttons -->
+        <div class=" mt-10 rounded-md shadow-sm p-3 bg-whitezz w-full md:w-2/5">
+            <a class="px-8 py-3 bg-green-100 text-green-800 rounded" href="./report.html">Report</a>
+            <a class="px-8 py-3 bg-red-100 text-red-800 rounded" href="../index.html">Exit</a>
+        </div>
+    </div>
+
+
+    <script>
+
+        const url = "https://mee-backend.vercel.app/plates/";
+
+        const getdata = async (query) => {
+                console.log("data");
+                await fetch(url+ query)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if(data.error){
+                            setupError(data.error)
+                            return;
+                            
+                        }else{
+                            setupSuccess(data);
+                            
+                        }
+                        // render(data);
+                        // stat(data);
+                        // DATA = data;
+                    })
+                    .catch((error) => console.log(error));
+            };
+
+            var input = document.getElementById("input")
+
+            document.getElementById("form").addEventListener("submit", (e)=>{
+                e.preventDefault();
+                getdata(input.value)
+            })
+
+            const setupSuccess = (data)=>{
+                document.getElementById("result_header").innerHTML = data.number;
+                document.getElementById("state").innerHTML = data.state;
+                document.getElementById("year").innerHTML = data.year;
+                document.getElementById("success").style.display = 'flex';
+                document.getElementById("error").style.display = 'none';
+            }
+            const setupError = (data)=>{
+                document.getElementById("year").innerHTML = data.year;
+                document.getElementById("error").innerHTML = data;
+                document.getElementById("success").style.display = 'none';
+                document.getElementById("error").style.display = 'flex';
+            }
+
+    </script>
+</body>
+</html>

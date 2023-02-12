@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/tailwind.js"></script>
+    <title>Vehicle Identification System</title>
+</head>
+
+<body
+    class=" relative bg-blue-200 bg-[url('../img/bg.jpg')] bg-center bg-no-repeat bg-cover p-3 bg-black h-screen flex flex-col justify-center items-center">
+    <h1 class="text-white z-10 mb-4 font-semibold text-xl">Vehicle Identification System</h1>
+    <div class="bg-white rounded-md w-full mx-4 md:mx-auto md:w-1/4 z-10 mb-4 relative h-32">
+        <img alt="" src="../img/plate.gif" class="w-full h-full">
+    </div>
+    <div class="w-full h-screen bg-black opacity-50 absolute top-0 left-0"></div>
+    <div class="bg-white rounded-md p-4 w-full mx-4 md:mx-auto md:w-1/4 z-10">
+        <div class="text-center font-semibold mb-8">Log In To The System</div>
+        <form id="form">
+            <label for="email" class="text-xs text-gray-600">Enter Email Address</label>
+            <input required readonly value="admin@vehicleidentification.com" id="email"
+                placeholder="Enter Email Address" class="bg-gray-100 w-full p-2 rounded shadow-sm mb-4">
+            <label for="password" class="text-xs text-gray-600">Enter Password</label>
+            <input required id="password" type="password" placeholder="Password"
+                class="bg-gray-100 w-full p-2 rounded shadow-sm mb-4">
+            <button class="bg-blue-600 w-full p-2 rounded shadow-sm mb-4 text-sm text-white hover:bg-blue-700">Log
+                In</button>
+            <a href="../index.html" class="bg-gray-600 w-full p-2 rounded shadow-sm mb-4 text-sm text-white hover:bg-gray-700">
+                Back
+            </a>
+        </form>
+    </div>
+    <script>
+        let password = document.getElementById("password")
+        document.getElementById('form').addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (password.value !== "admin123") {
+                alert("Incorrect password");
+                password.value = "";
+                return
+            } else {
+                window.location.href = '../pages/admin.html'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

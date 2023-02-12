@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/tailwind.js"></script>
+    <title>Report</title>
+</head>
+<body class="bg-gray-200">
+    <div class="bg-white py-3 shadow-sm text-center font-semibold text-blue-900">Report</div>
+    <div class="my-7 rounded shadow-sm p-4 bg-white w-5/6 mx-auto md:w-2/5">
+        <form >
+            <h4 class="text-center my-3">Send Report</h4>
+            <label class="text-gray-600" for="">Enter Full Name</label>
+            <input required class="bg-blue-50 w-full py-2 px-4 mb-4" placeholder="Enter Full Name">
+            <label class="text-gray-600 mt-3" for="">Enter Email Address</label>
+            <input required class="bg-blue-50 w-full py-2 px-4" placeholder="Enter Email ">
+            <label class="text-gray-600 mt-3" for="">Enter Message</label>
+            <textarea style="resize: none;" name="message" class="w-full bg-blue-50 p-3" id="" cols="30" rows="5">Enter Report Message</textarea>
+            <button class="mt-5 w-full bg-blue-700 text-white rounded py-3">Submit Report</button>
+            <p class="my-5">
+                <a href="../index.html" class="mt-5 w-full bg-red-100 text-red-800 rounded py-3 px-5">
+                    Cancel
+                </a>
+
+            </p>
+        </form>
+    </div>
+</body>
+</html>
